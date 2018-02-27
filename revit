@@ -24,3 +24,11 @@ app = uiapp.Application
 
 clr.AddReference('DSCoreNodes')
 from DSCore import *
+
+# === Transaction ===
+
+trans = Transaction(newdoc, "something")
+trans.Start()
+
+trans.Commit()
+newdoc.Close(True)
