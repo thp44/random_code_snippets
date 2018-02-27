@@ -34,3 +34,16 @@ trans.Start()
 
 trans.Commit()
 newdoc.Close(True)
+
+
+
+# === Converts ===
+
+path = ModelPathUtils.ConvertUserVisiblePathToModelPath(path_str)
+
+
+
+# === Collector ===
+
+
+
