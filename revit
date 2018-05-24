@@ -45,5 +45,53 @@ path = ModelPathUtils.ConvertUserVisiblePathToModelPath(path_str)
 
 # === Collector ===
 
+collector = FilteredElementCollector(Docs)
+filter = ElementOwnerViewFilter(view.Id)
+bic = System.Enum.ToObject(BuiltInCategory, cat.Id)
+catlist.append(collector.WherePasses(filter).OfCategory(bic).ToElements())
 
 
+basepointfilter = ElementCategoryFilter(BuiltInCategory.OST_ProjectBasePoint)
+basepoint = FilteredElementCollector(doc).WherePasses(basepointfilter).ToElements()
+
+
+FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_PlumbingFixtures).FamilyToElements()
+
+
+
+collector = FilteredElementCollector(doc)
+collector.OfCategory(BuiltInCategory.OST_PlumbingFixtures)
+collector.OfClass(FamilySymbol)
+types = collector.ToElements()
+
+
+collector = FilteredElementCollector(LinkDoc)
+filter = ElementCategoryFilter(BuiltIn)
+list=collector.WherePasses(filter).WhereElementIsNotElementType().ToElements()
+
+
+bbx = bb.ToRevitType()
+outline = Outline(bbx.Min, bbx.Max)
+#filter = BoundingBoxIntersectsFilter(outline)
+  
+  
+  
+fec = FilteredElementCollector(open_doc).WhereElementIsElementType()
+
+if isinstance(x, Category):
+fec.OfCategoryId(x.Id)
+elif isinstance(x, ElementType):
+fec.OfClass(x.GetType())
+else:
+fec.OfClass(x)
+
+lst = [e.ToDSType(1) for e in fec]
+filter = BoundingBoxIsInsideFilter(outline)
+collector = FilteredElementCollector(doc, doc.ActiveView.Id).WherePasses(filter)
+
+
+
+BuiltIn = System.Enum.ToObject(BuiltInCategory, cat.Id)
+collector = FilteredElementCollector(LinkDoc)
+filter = ElementCategoryFilter(BuiltIn)
+list=collector.WherePasses(filter).WhereElementIsNotElementType().ToElements()
